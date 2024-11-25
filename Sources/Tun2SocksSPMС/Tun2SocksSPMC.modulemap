@@ -1,0 +1,4 @@
+module Tun2SocksSPMC {
+    umbrella header "Tun2SocksSPMC.h"
+    export *
+}

@@ -5,17 +5,33 @@ import PackageDescription
 
 let package = Package(
     name: "Tun2SocksSPM",
+    platforms: [
+        .iOS(.v15)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Tun2SocksSPM",
-            targets: ["Tun2SocksSPM"]),
+            targets: ["Tun2SocksSPM"]
+        ),
+        .library(
+            name: "Tun2SocksSPMC",
+            targets: ["Tun2SocksSPMC"]
+        )
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Tun2SocksSPM"),
-
+            name: "Tun2SocksSPM",
+            dependencies: ["HevSocks5Tunnel", "Tun2SocksSPMC"]
+        ),
+        .target(
+            name: "Tun2SocksSPMC",
+            path: "Sources/Tun2SocksSPMС",
+            publicHeadersPath: "."
+        ),
+        .binaryTarget(
+            name: "HevSocks5Tunnel",
+            url: "https://github.com/VasiliyShaydullin/Tun2SocksSPM/releases/download/2.7.5/HevSocks5Tunnel.xcframework.zip",
+            checksum: "daff29b48fca7cb477a32e0693b06c5c0e2020c0e4ee23d871312f09f6e36648"
+        )
     ]
 )
